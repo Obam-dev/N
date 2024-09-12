@@ -1,0 +1,23 @@
+<video id="video" width="320" height="240" autoplay></video>
+<button id="snap">Ambil Foto</button>
+<canvas id="canvas" width="320" height="240"></canvas>
+
+<script>
+   // Akses Kamera
+   var video = document.getElementById('video');
+   if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+         video.srcObject = stream;
+         video.play();
+      });
+   }
+
+   // Ambil Foto
+   var canvas = document.getElementById('canvas');
+   var context = canvas.getContext('2d');
+   document.getElementById('snap').addEventListener('click', function() {
+      context.drawImage(video, 0, 0, 320, 240);
+      var dataUrl = canvas.toDataURL('image/png');
+      console.log(dataUrl); // Kirim data URL ini ke backend untuk diproses lebih lanjut
+   });
+</script>
