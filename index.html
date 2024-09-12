@@ -1,23 +1,21 @@
-<video id="video" width="320" height="240" autoplay></video>
-<button id="snap">Ambil Foto</button>
-<canvas id="canvas" width="320" height="240"></canvas>
-
-<script>
-   // Akses Kamera
-   var video = document.getElementById('video');
-   if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-         video.srcObject = stream;
-         video.play();
-      });
-   }
-
-   // Ambil Foto
-   var canvas = document.getElementById('canvas');
-   var context = canvas.getContext('2d');
-   document.getElementById('snap').addEventListener('click', function() {
-      context.drawImage(video, 0, 0, 320, 240);
-      var dataUrl = canvas.toDataURL('image/png');
-      console.log(dataUrl); // Kirim data URL ini ke backend untuk diproses lebih lanjut
-   });
-</script>
+4<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirim Pesan WhatsApp</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Kirim Pesan WhatsApp</h1>
+        <form id="messageForm">
+            <label for="message">Pesan:</label>
+            <textarea id="message" rows="4" placeholder="Tulis pesan Anda di sini..." required></textarea>
+            <button type="submit">Kirim Pesan</button>
+        </form>
+        <p id="responseMessage"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
